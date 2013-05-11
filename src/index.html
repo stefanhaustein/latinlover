@@ -1,0 +1,17 @@
+<html>
+<head>
+</head>
+<body>
+<input id="input" value="" name="input"> <button onclick="window.alert(new grammar.Form(document.getElementById('input').value).toString());">Action</button>
+<script src="closure/goog/base.js"></script>
+<script src="closure/goog/string/string.js"></script>
+<script src="grammar.js"></script>
+<script src="latein.js"></script>
+
+<script>
+var w = new grammar.Wort();
+latein.initWort(w, "s: factum, -i, n: Tat, Handlung, Tatsache, Erfolg, Werk, Verfahren, Vorfall, Ereignis");
+</script>
+
+</body>
+</html>
