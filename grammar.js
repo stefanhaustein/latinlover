@@ -120,8 +120,8 @@ grammar.Form = function(opt_def) {
 };
 
 /**
- * @param {string}
- *            s
+ * Set a single aspect of the form determined by the given string.
+ * @param {string} s
  */
 grammar.Form.prototype.set = function(s) {
   s = s.toLowerCase();

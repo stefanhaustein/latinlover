@@ -17,34 +17,41 @@ latein.FAELLE = [grammar.Kasus.NOMINATIV,
 
 
 /**
+ * @constructor 
+ * @implements {language.Language}
+ */
+latein.Latein = function() {
+};
+
+/**
  * Initialisiert ein Wort incl. aller Formen aus der gegebenen Definition.
  * 
- * @param {grammar.Wort} wort
  * @param {string} def
+ * @return {grammar.Wort}
  */
-latein.initWort = function(wort, def) {
+latein.Latein.prototype.parse = function(def) {
   var parts = def.split(':');
-
+  var wort = new grammar.Wort();
   switch(parts[0].trim().toUpperCase()) {
   case 'S': 
-    latein.initSubstantiv(wort, parts[1]);
+    this.initSubstantiv(wort, parts[1]);
     break;
   default:
     window.console.log("NYI: Wortart " + parts[0]);
   }
   wort.definition = parts[2];
-  
+  return wort;
 };
 
 
 
 /**
- *  
+ * Bildet alle Formen eines Substantivs.
  * 
  * @param {grammar.Wort} wort
  * @param {string} lat
  */
-latein.initSubstantiv = function(wort, lat) {
+latein.Latein.prototype.initSubstantiv = function(wort, lat) {
   var parts = lat.split(',');
   switch(parts[parts.length - 1].toUpperCase().trim()) {
   case 'F': wort.genus = grammar.Genus.FEMININUM; break;
