@@ -15,6 +15,30 @@ latein.FAELLE = [grammar.Kasus.NOMINATIV,
                  grammar.Kasus.ABLATIV,
                  grammar.Kasus.VOKATIV];
 
+/**
+ * Checks wether all characters in s are consonants.
+ * 
+ * @param {string} s
+ * @return {boolean}
+ */
+latein.konsonanten = function(s) {
+  for (var i = 0; i < s.length; i++) {
+    if (latein.KONSONANTEN.indexOf(s.charAt(i)) == -1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+latein.silben = function(s) {
+  var silben = 0;
+  for (var i = 0; i < s.length; i++) {
+    if (latein.VOKALE.indexOf(s.charAt(i)) != -1) {
+      silben++;
+    }
+  }
+  return silben;
+}
 
 /**
  * @constructor 
@@ -31,18 +55,17 @@ latein.Latein = function() {
  */
 latein.Latein.prototype.parse = function(def) {
   var parts = def.split(':');
-  var wort = new grammar.Wort();
+  var cut = def.indexOf(':');
+  var word = new language.Word(def.substring(cut + 1));
   switch(parts[0].trim().toUpperCase()) {
   case 'S': 
-    this.initSubstantiv(wort, parts[1]);
+    this.initSubstantiv(word, parts[1]);
     break;
   default:
     window.console.log("NYI: Wortart " + parts[0]);
   }
-  wort.definition = parts[2];
   return word;
 };
-
 
 
 /**
@@ -52,7 +75,7 @@ latein.Latein.prototype.parse = function(def) {
  * @param {string} lat
  */
 latein.Latein.prototype.initSubstantiv = function(word, lat) {
-  word.wortArt = grammar.WortArt.SUBSTANTIV;
+  word.wortArt = language.WortArt.SUBSTANTIV;
   var parts = lat.split(',');
   switch(parts[parts.length - 1].toUpperCase().trim()) {
     case 'F': word.genus = grammar.Genus.FEMININUM; break;
@@ -98,7 +121,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
     var r2 = nominativ.charAt(nominativ.length - 1) == 'e' ? 
         'e' : nominativ.substring(nominativ.length - 2);
     if (latein.konsonanten(stamm.substring(stamm.length - 2)) ||  // misch
-        ((r2 == 'is' || r2 == 'es') && silben(stamm + 'is') == silben(nominativ))) {
+        ((r2 == 'is' || r2 == 'es') && latein.silben(stamm + 'is') == latein.silben(nominativ))) {
       endungen = [['1','is','i','em','e','1'],
                   ['es','ium','ibus','es','ibus','es']];
     } else if ((r2 == 'is' || r2 == 'e' || r2 == 'al' || r2 == 'ar') &&  // i-stamm
@@ -165,7 +188,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
     case '6': form.kasus = grammar.Kasus.VOKATIV; break;
     default: throw('Kasus error in "' + s + '"');
     }
-    switch(s.charAt(1).toUpperCase) {
+    switch(s.charAt(1).toUpperCase()) {
     case 'S': form.numerus = grammar.Numerus.SINGULAR; break;
     case 'P': form.numerus = grammar.Numerus.PLURAL; break;
     default: throw('Numerus error in "' + s + '"');
@@ -805,7 +828,7 @@ Procedure tLatein.InitSubstantiv (lat: String);
               dec (i);
 
             if i = 0 then
-              fatal ('kann "bastelstamm" fr Genitiv nicht bilden!');
+              fatal ('kann "bastelstamm" fï¿½r Genitiv nicht bilden!');
 
             bastelStamm := LeftStr (nom, i-1);
           end
@@ -998,7 +1021,7 @@ function Abfrage (richtig: String): Boolean;
 
       if ok and (tcnt < cnt) then
         begin
-          write ('ok - ',tcnt+1,'. M”glichkeit =? ');
+          write ('ok - ',tcnt+1,'. Mï¿½glichkeit =? ');
           readln (eingabe);
         end;
 
@@ -1156,7 +1179,7 @@ begin
   writeln;
   writeln;
   writeln;
-  writeln ('...bitte return drcken...');
+  writeln ('...bitte return drï¿½cken...');
   readln;
 
 

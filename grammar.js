@@ -78,7 +78,7 @@ grammar.Kasus = {
 
 /**
  * @constructor
- * @paramÊ{=string} opt_def
+ * @paramï¿½{=string} opt_def
  */
 grammar.Form = function(opt_def) {
 
@@ -143,7 +143,7 @@ grammar.Form.prototype.set = function(s) {
     break;
   case 'd':
     if (goog.string.startsWith(s, 'dat')) {
-      this.kasus = grammar.Casus.DATIV;
+      this.kasus = grammar.Kasus.DATIV;
     } else {
       found = false;
     }
@@ -197,7 +197,11 @@ grammar.Form.prototype.set = function(s) {
     this.genus = grammar.Genus.MASCULINUM;
     break;
   case 'n':
-    this.genus = grammar.Genus.NEUTRUM;
+    if (goog.string.startsWith(s, 'no')) {
+      this.kasus = grammar.Kasus.NOMINATIV;
+    } else {
+      this.genus = grammar.Genus.NEUTRUM;
+    }
     break;
   case 'p':
     if (goog.string.startsWith(s, 'pas')) {
@@ -227,7 +231,7 @@ grammar.Form.prototype.set = function(s) {
     } else {
       found = false;
     }
-    brek;
+    break;
   default:
     found = false;
   } // switch

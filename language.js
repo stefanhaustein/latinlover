@@ -25,7 +25,7 @@ language.WortArt = {
 /**
  * @constructor
  */
-language.Word = function() {
+language.Word = function(definition) {
   /** @type {language.WortArt} */
   this.art = null;
 
@@ -36,7 +36,7 @@ language.Word = function() {
   this.forms = {};
 
   /** @type {string} The definition of this word */
-  this.definition = '';
+  this.definition = definition;
 };
 
 /**
@@ -49,7 +49,7 @@ language.Word = function() {
 language.Word.prototype.setForm = function(form, s) {
   var key = form.toString();
   form = new grammar.Form(key);
-  var wortForm = new grammar.WortForm(wort, form, s);
+  var wortForm = new language.WordForm(this, form, s);
   this.forms[key] = wortForm;
 };
 

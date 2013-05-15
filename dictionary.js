@@ -17,13 +17,24 @@ dictionary.Dictionary = function(language) {
  * Adds the given text file to the dictionary, line by line.
  * @param {string} text
  */
-dictionary.Dictionary.load = function(text) {
+dictionary.Dictionary.prototype.load = function(text) {
   var parts = text.split('\n');
   for (var i = 0; i < parts.length; i++) {
-    var word = language.parse(parts[i]);
+    var word = this.language.parse(parts[i]);
     for (var k in word.forms) {
       var wordForm = word.forms[k];
-      this.words[f.string] = wordForm;
+      var formen = this.words[wordForm.string];
+      if (formen == null) {
+        formen = [];
+        this.words[wordForm.string] = formen;
+      }
+      formen.push(wordForm);
     }
   }
+  console.log(this.words);
 };
+
+
+dictionary.Dictionary.prototype.find = function(s) {
+  return this.words[s];
+}
