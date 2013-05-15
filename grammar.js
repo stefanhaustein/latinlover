@@ -75,14 +75,6 @@ grammar.Kasus = {
   VOKATIV : "Vok.",
 };
 
-/**
- * @enum {string}
- */
-grammar.WortArt = {
-  SUBSTANTIV : "Substantiv",
-  VERB : "Verb",
-  ADJEKTIV : "Adjektiv"
-};
 
 /**
  * @constructor
@@ -268,31 +260,5 @@ grammar.Form.prototype.toString = function() {
     s += this.genus + ' ';
   }
   return s.trim();
-};
-
-/**
- * @constructor
- */
-grammar.Wort = function() {
-  /** @type {grammar.WorArt} */
-  this.art = null;
-
-  /** @type {grammar.Genus} */
-  this.genus = null;
-
-  /** @type {Object.<string, string>} */
-  this.formen = {};
-
-  /** @type {string} The definition of this word */
-  this.definition = '';
-};
-
-/**
- * @param grammar.Form form;
- * 
- */
-grammar.Wort.prototype.setForm = function(form, s) {
-  this.formen[form.toString()] = s;
-  window.console.log(form.toString() + ": " + s);
 };
 

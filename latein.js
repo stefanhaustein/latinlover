@@ -27,7 +27,7 @@ latein.Latein = function() {
  * Initialisiert ein Wort incl. aller Formen aus der gegebenen Definition.
  * 
  * @param {string} def
- * @return {grammar.Wort}
+ * @return {language.Word}
  */
 latein.Latein.prototype.parse = function(def) {
   var parts = def.split(':');
@@ -40,7 +40,7 @@ latein.Latein.prototype.parse = function(def) {
     window.console.log("NYI: Wortart " + parts[0]);
   }
   wort.definition = parts[2];
-  return wort;
+  return word;
 };
 
 
@@ -48,16 +48,18 @@ latein.Latein.prototype.parse = function(def) {
 /**
  * Bildet alle Formen eines Substantivs.
  * 
- * @param {grammar.Wort} wort
+ * @param {language.Word} wors
  * @param {string} lat
  */
-latein.Latein.prototype.initSubstantiv = function(wort, lat) {
+latein.Latein.prototype.initSubstantiv = function(word, lat) {
+  word.wortArt = grammar.WortArt.SUBSTANTIV;
   var parts = lat.split(',');
   switch(parts[parts.length - 1].toUpperCase().trim()) {
-  case 'F': wort.genus = grammar.Genus.FEMININUM; break;
-  case 'M': wort.genus = grammar.Genus.MASCULINUM; break;
-  case 'N': wort.genus = grammar.Genus.NEUTRUM; break;
-  default: throw ('Unrecognized genus "' + parts[parts.length - 1] + '" in "' + lat + '"');
+    case 'F': word.genus = grammar.Genus.FEMININUM; break;
+    case 'M': word.genus = grammar.Genus.MASCULINUM; break;
+    case 'N': word.genus = grammar.Genus.NEUTRUM; break;
+    default: 
+      throw ('Unrecognized genus "' + parts[parts.length - 1] + '" in "' + lat + '"');
   }
   var nominativ = parts[0].trim();
   var genitiv = parts.length <= 2 ? nominativ : parts[1].trim();
@@ -147,7 +149,7 @@ latein.Latein.prototype.initSubstantiv = function(wort, lat) {
           s = stamm + s.substring(0, cut);
         }
       }
-      wort.setForm(form, s);
+      word.setForm(form, s);
     }
   }
   
@@ -175,7 +177,7 @@ latein.Latein.prototype.initSubstantiv = function(wort, lat) {
     if (s.charAt(0) == '-') {
       s = stamm + s.substring(1);
     }
-    wort.setForm(form, s);
+    word.setForm(form, s);
   }
 
 };
