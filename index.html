@@ -2,7 +2,9 @@
 <head>
 </head>
 <body>
-<input id="input" value="" name="input"> <button onclick="window.alert(new grammar.Form(document.getElementById('input').value).toString());">Action</button>
+Lateinisches Substantiv: 
+<input id="input" value="" name="input"> <button onclick="bestimme(document.getElementById('input').value);">Bestimme</button>
+<div id="output"></div>
 <script src="closet.js"></script>
 <script src="language.js"></script>
 <script src="grammar.js"></script>
@@ -10,15 +12,28 @@
 <script src="latein.js"></script>
 
 <script>
-var latein = new latein.Latein();
-var dictionary = new dictionary.Dictionary(latein);
+var dictionary = new dictionary.Dictionary(new latein.Latein());
 
 var req = new XMLHttpRequest();
 req.onload = function() {
-  dictionary.add(this.responseText);   
+  dictionary.load(this.responseText);   
 };
 req.open("get", "lexikon.txt");
 req.send();
+
+function bestimme(s) {
+  var options = dictionary.find(s);
+  var result = '';
+  if (options) {
+    for (var i = 0; i < options.length; i++) {
+      var wordForm = options[i];
+      result += wordForm.form.toString() + " von " + wordForm.word.definition + '<br>';
+    }
+    document.getElementById("output").innerHTML = result;
+  } else {
+    document.getElementById("output").innerHTML = 'Unbekannt: "' + s + '"';
+  }
+}
 
 </script>
 
