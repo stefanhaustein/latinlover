@@ -1,4 +1,8 @@
-var cache = {}; 
+var cache = {
+  string: {
+    
+  }
+}; 
 
 function preload(names, callback, opt_index) {
   var index = opt_index ? opt_index : 0;

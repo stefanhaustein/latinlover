@@ -1,19 +1,18 @@
 var latein = module.exports = exports = {};
 
 var goog = require("closet");
-var grammar = require("grammar");
 var language = require("language");
 
 latein.VOKALE = 'aeiouAEIOU';
 latein.KONSONANTEN = 'bcdfghjklmnpqrstvwxyz' + 
                      'BCDFGHJKLMNPQRSTVWXYZ';
 
-latein.FAELLE = [grammar.Kasus.NOMINATIV, 
-                 grammar.Kasus.DATIV, 
-                 grammar.Kasus.GENITIV,
-                 grammar.Kasus.AKKUSATIV,
-                 grammar.Kasus.ABLATIV,
-                 grammar.Kasus.VOKATIV];
+latein.FAELLE = [language.Kasus.NOMINATIV, 
+                 language.Kasus.DATIV, 
+                 language.Kasus.GENITIV,
+                 language.Kasus.AKKUSATIV,
+                 language.Kasus.ABLATIV,
+                 language.Kasus.VOKATIV];
 
 /**
  * Checks wether all characters in s are consonants.
@@ -78,9 +77,9 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   word.wortArt = language.WortArt.SUBSTANTIV;
   var parts = lat.split(',');
   switch(parts[parts.length - 1].toUpperCase().trim()) {
-    case 'F': word.genus = grammar.Genus.FEMININUM; break;
-    case 'M': word.genus = grammar.Genus.MASCULINUM; break;
-    case 'N': word.genus = grammar.Genus.NEUTRUM; break;
+    case 'F': word.genus = language.Genus.FEMININUM; break;
+    case 'M': word.genus = language.Genus.MASCULINUM; break;
+    case 'N': word.genus = language.Genus.NEUTRUM; break;
     default: 
       throw ('Unrecognized genus "' + parts[parts.length - 1] + '" in "' + lat + '"');
   }
@@ -88,7 +87,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   var genitiv = parts.length <= 2 ? nominativ : parts[1].trim();
   
   var bastelStamm = '';
-  var form = new grammar.Form();
+  var form = new language.Form();
   
   if (genitiv.charAt(0) == '-') {
     if (latein.KONSONANTEN.indexOf(genitiv.charAt(1)) != -1) {
@@ -155,7 +154,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   }
 
   for (var n = 0; n < 2; n++) {
-    form.numerus = n == 0 ? grammar.Numerus.SINGULAR : grammar.Numerus.PLURAL;
+    form.numerus = n == 0 ? language.Numerus.SINGULAR : language.Numerus.PLURAL;
     endungenN = endungen[n]; 
     for (var i = 0; i < latein.FAELLE.length; i++) {
       form.kasus = latein.FAELLE[i];
@@ -166,7 +165,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
         var cut = s.indexOf('/');
         if (cut == -1) {
           s = stamm + s;
-        } else if (form.genus == grammar.Genus.NEUTRUM) {
+        } else if (form.genus == language.Genus.NEUTRUM) {
           s = stamm + s.substring(cut + 1);
         } else {
           s = stamm + s.substring(0, cut);
@@ -180,17 +179,17 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   for (var i = 2; i < parts.length - 1; i++) {
     s = parts[i].trim();
     switch(s.charAt(0)) {
-    case '1': form.kasus = grammar.Kasus.NOMINATIV; break;
-    case '2': form.kasus = grammar.Kasus.GENITIV; break;
-    case '3': form.kasus = grammar.Kasus.DATIV; break;
-    case '4': form.kasus = grammar.Kasus.AKKUSATIV; break;
-    case '5': form.kasus = grammar.Kasus.ABLATIV; break;
-    case '6': form.kasus = grammar.Kasus.VOKATIV; break;
+    case '1': form.kasus = language.Kasus.NOMINATIV; break;
+    case '2': form.kasus = language.Kasus.GENITIV; break;
+    case '3': form.kasus = language.Kasus.DATIV; break;
+    case '4': form.kasus = language.Kasus.AKKUSATIV; break;
+    case '5': form.kasus = language.Kasus.ABLATIV; break;
+    case '6': form.kasus = language.Kasus.VOKATIV; break;
     default: throw('Kasus error in "' + s + '"');
     }
     switch(s.charAt(1).toUpperCase()) {
-    case 'S': form.numerus = grammar.Numerus.SINGULAR; break;
-    case 'P': form.numerus = grammar.Numerus.PLURAL; break;
+    case 'S': form.numerus = language.Numerus.SINGULAR; break;
+    case 'P': form.numerus = language.Numerus.PLURAL; break;
     default: throw('Numerus error in "' + s + '"');
     } 
     if (s.charAt(2) != '=') {
