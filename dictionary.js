@@ -1,5 +1,4 @@
-goog.provide('dictionary');
-
+var dictionary = module.exports = exports = {};
 
 /**
  * @constructor
@@ -24,7 +23,7 @@ dictionary.Dictionary.prototype.load = function(text) {
     for (var k in word.forms) {
       var wordForm = word.forms[k];
       var formen = this.words[wordForm.string];
-      if (formen == null) {
+      if (!formen) {
         formen = [];
         this.words[wordForm.string] = formen;
       }

@@ -1,5 +1,5 @@
 s: acus, f: Nadel
-s: aequor, -oris, n: Meeresfl„che
+s: aequor, -oris, n: Meeresflï¿½che
 s: aes, aeris, n: Erz
 s: agger, -eris, m: Damm
 s: amicus, -i, m: Freund
@@ -11,7 +11,7 @@ s: calix, calicis, m: Becher
 s: caput, capitis, n: Kopf
 s: casus, m: Fall
 s: civitas, -atis, f: Stadt
-s: collis, m: Hgel
+s: collis, m: Hï¿½gel
 s: cornu, -us, n: Horn
 s: crux, crucis, f: Kreuz
 s: dens, dentis, m: Zahn
@@ -38,7 +38,7 @@ s: ius, iuris, n: Recht
 s: lac, lactis, n: Milch
 s: lapis, lapidis, m: Stein
 s: laus, laudis, f: Lob
-s: leo, -onis, m: L”we
+s: leo, -onis, m: Lï¿½we
 s: lex, legis, f: Gesetz
 s: manus, f: Hand, Schar
 s: mare, -is, n: Meer
@@ -59,31 +59,31 @@ s: os, oris, n: Mund
 s: os, ossis, n: Knochen
 s: panis, m: Brot
 s: pater, patris, m: Vater
-s: pes, pedis, m: Fuá
+s: pes, pedis, m: Fuï¿½
 s: piscis, m: Fisch
-s: pons, pontis, m: Brcke
-s: porticus, f: S„ulenhalle
+s: pons, pontis, m: Brï¿½cke
+s: porticus, f: Sï¿½ulenhalle
 s: puer, -eri, m: Knabe
 s: pulvis, -eris, m: Staub
 s: regio, -onis, f: Gegend
 s: res, rei, f: Sache
 s: sal, salis, m: Salz
 s: sanguis, -inis, m: Blut
-s: sermo, -onis, m: Gespr„ch
+s: sermo, -onis, m: Gesprï¿½ch
 s: sol, solis, m: Sonne
 s: tempus, -oris, n: Zeit
 s: tribus, f: Bezirk
 s: turris, -is, f: Turm
 s: urbs, urbis, f: Stadt
-s: ver, veris, n: Frhling
+s: ver, veris, n: Frï¿½hling
 s: virgo, -inis, f: Jungfrau
 s: virtus, -utis, f: Tugend
 s: vulgus, -i, n: Volk
 v: porto, 1: tragen
-v: deleo, 2: zerst”ren
+v: deleo, 2: zerstï¿½ren
 v: tego, texi, tectum, 3: bedecken
 v: capio, cepi, captum, 3: fangen
-v: audio, 4: h”ren
+v: audio, 4: hï¿½ren
 v: sum, fui: sein
 v: ferro, tuli, latum: tragen
 v: volo, volui: wollen
@@ -97,6 +97,6 @@ v: desum, defui: fehlen
 v: intersum, interfui: teilnehmen
 v: obsum, obfui: schaden
 v: praesum, praefui: vorstehen
-v: prosum, profui: ntzen
-v: supersum, superfui: brig sein
+v: prosum, profui: nï¿½tzen
+v: supersum, superfui: ï¿½brig sein
 v: possum, potui: ?

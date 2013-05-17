@@ -1,8 +1,8 @@
-goog.require("grammar");
-goog.require("goog.string");
+var latein = module.exports = exports = {};
 
-goog.provide("latein");
-
+var goog = require("closet");
+var grammar = require("grammar");
+var language = require("language");
 
 latein.VOKALE = 'aeiouAEIOU';
 latein.KONSONANTEN = 'bcdfghjklmnpqrstvwxyz' + 

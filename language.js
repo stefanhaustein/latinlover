@@ -1,4 +1,6 @@
-goog.provide('language');
+var language = module.exports = exports = {}
+
+var grammar = require("grammar");
 
 /**
  * @interface 

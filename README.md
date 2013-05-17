@@ -1,4 +1,4 @@
 latinlover
 ==========
 
-German Latin grammar trainer in javascript (port from pascal under development)
+German Latin grammar trainer in javascript (ongoing port from pascal)

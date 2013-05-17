@@ -1,7 +1,6 @@
-goog.require("goog.string");
+var grammar = module.exports = exports = {};
 
-goog.provide("grammar");
-
+var goog = require("closet");
 
 /**
  * @enum {string}
@@ -78,7 +77,7 @@ grammar.Kasus = {
 
 /**
  * @constructor
- * @param�{=string} opt_def
+ * @param {=string} opt_def
  */
 grammar.Form = function(opt_def) {
 
@@ -266,3 +265,4 @@ grammar.Form.prototype.toString = function() {
   return s.trim();
 };
 
+module.exports = exports = grammar;
