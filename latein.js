@@ -1,6 +1,6 @@
 var latein = module.exports = exports = {};
 
-var goog = require("closet");
+var string = require("string");
 var language = require("language");
 
 latein.VOKALE = 'aeiouAEIOU';
@@ -27,7 +27,7 @@ latein.konsonanten = function(s) {
     }
   }
   return true;
-}
+};
 
 latein.silben = function(s) {
   var silben = 0;
@@ -95,7 +95,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
       while (i >= 0 && nominativ.charAt(i) != genitiv.charAt(1)) {
         i--;
       }
-      if (i == 0) throw ('Kann nominativendung nicht abtrennen in "' + nominativ + '"');
+      if (i === 0) throw ('Kann nominativendung nicht abtrennen in "' + nominativ + '"');
       bastelStamm = nominativ.substring(0, i);
     } else if (latein.VOKALE.indexOf(nominativ.charAt(nominativ.length - 1)) != -1) {
       bastelStamm = nominativ.substring(0, nominativ.length - 1);
@@ -107,9 +107,9 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   } 
  
   var stamm = genitiv.substring(0, genitiv.length - 
-      (goog.string.endsWith(genitiv, 'i') && !goog.string.endsWith(genitiv, 'ei') ? 1 : 2));
+      (string.endsWith(genitiv, 'i') && !string.endsWith(genitiv, 'ei') ? 1 : 2));
     
-  if (bastelStamm == '') {
+  if (bastelStamm === '') {
     bastelStamm = stamm;
   }
 
@@ -139,7 +139,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
     endungen = [['1','ei','ei','em','e','1'],
                 ['es','erum','ebus','es','ebus','es']];
   } else if (genitivEndung == 'i') {  // O
-    if (goog.string.endsWith(nominativ, 'us')) {
+    if (string.endsWith(nominativ, 'us')) {
       endungen = [['1','i','o','um','o','e'],
                   ['a/i','orum','is','a/os','is','a/i']];
     } else {
@@ -154,8 +154,8 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   }
 
   for (var n = 0; n < 2; n++) {
-    form.numerus = n == 0 ? language.Numerus.SINGULAR : language.Numerus.PLURAL;
-    endungenN = endungen[n]; 
+    form.numerus = n === 0 ? language.Numerus.SINGULAR : language.Numerus.PLURAL;
+    var endungenN = endungen[n]; 
     for (var i = 0; i < latein.FAELLE.length; i++) {
       form.kasus = latein.FAELLE[i];
       var s = endungenN[i];
@@ -177,7 +177,7 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
   
   // Unregelmaessigkeiten
   for (var i = 2; i < parts.length - 1; i++) {
-    s = parts[i].trim();
+    var s = parts[i].trim();
     switch(s.charAt(0)) {
     case '1': form.kasus = language.Kasus.NOMINATIV; break;
     case '2': form.kasus = language.Kasus.GENITIV; break;

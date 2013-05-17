@@ -1,6 +1,14 @@
 var cache = {
   string: {
-    
+    endsWith: function(s, w) {
+      return s.indexOf(w, s.length - w.length) != -1;
+    },
+    startsWith: function(s, w) {
+      return s.lastIndexOf(w, 0) != -1;
+    },
+    trim: function(s) {
+      return s.trim();
+    }
   }
 }; 
 

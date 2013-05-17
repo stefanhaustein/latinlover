@@ -1,5 +1,7 @@
 var language = module.exports = exports = {}
 
+var string = require("string");
+
 /**
  * @interface 
  */
@@ -138,28 +140,28 @@ language.Form.prototype.set = function(s) {
     this.person = language.Person.THIRD;
     break;
   case 'a':
-    if (goog.string.startsWith(s, "akt")) {
+    if (string.startsWith(s, "akt")) {
       this.genusVerbi = language.GenusVerbi.AKTIV;
-    } else if (goog.string.startsWith(s, "abl")) {
+    } else if (string.startsWith(s, "abl")) {
       this.kasus = language.Kasus.ABLATIV;
-    } else if (goog.string.startsWith(s, 'abl')) {
+    } else if (string.startsWith(s, 'abl')) {
       this.kasus = language.Kasus.ABLATIV;
-    } else if (goog.string.startsWith(s, 'akk')) {
+    } else if (string.startsWith(s, 'akk')) {
       this.kasus = language.Kasus.AKKUSATIV;
     } else {
       found = false;
     }
     break;
   case 'd':
-    if (goog.string.startsWith(s, 'dat')) {
+    if (string.startsWith(s, 'dat')) {
       this.kasus = language.Kasus.DATIV;
     } else {
       found = false;
     }
     break;
   case 'f':
-    if (goog.string.startsWith(s, 'fut')) {
-      if (goog.string.endsWith(s, "ii") || goog.string.endsWith(s, '2')) {
+    if (string.startsWith(s, 'fut')) {
+      if (string.endsWith(s, "ii") || string.endsWith(s, '2')) {
         this.tempus = language.Tempus.FUTUR_2;
       } else {
         this.tempus = language.Tempus.FUTUR_1;
@@ -169,25 +171,25 @@ language.Form.prototype.set = function(s) {
     }
     break;
   case 'g':
-    if (goog.string.startsWith(s, 'gerundium')) {
+    if (string.startsWith(s, 'gerundium')) {
       this.modus = language.Modus.GERUNDIUM;
-    } else if (goog.string.startsWith(s, 'gerundivum')) {
+    } else if (string.startsWith(s, 'gerundivum')) {
       this.modus = language.Modus.GERUNDIVUM;
-    } else if (goog.string.startsWith(s, 'gen')) {
+    } else if (string.startsWith(s, 'gen')) {
       this.kasus = language.Kasus.GENITIV;
     } else {
       found = false;
     }
     break;
   case 'i':
-    if (goog.string.startsWith(s, 'ind')) {
+    if (string.startsWith(s, 'ind')) {
       this.modus = language.Modus.INDIKATIV;
-    } else if (goog.string.startsWith(s, 'inf')) {
+    } else if (string.startsWith(s, 'inf')) {
       this.modus = language.Modus.INFINITIV;
-    } else if (goog.string.startsWith(s, 'impf')
-        || goog.string.startsWith(s, 'imperf')) {
+    } else if (string.startsWith(s, 'impf')
+        || string.startsWith(s, 'imperf')) {
       this.tempus = language.Tempus.IMPERFEKT;
-    } else if (goog.string.startsWith(s, 'imp')) {
+    } else if (string.startsWith(s, 'imp')) {
       if (this.modus || this.person) {
         this.tempus = language.Tempus.IMPERFEKT;
       } else {
@@ -196,7 +198,7 @@ language.Form.prototype.set = function(s) {
     }
     break;
   case 'k':
-    if (goog.string.startsWith(s, 'konj')) {
+    if (string.startsWith(s, 'konj')) {
       this.modus = language.Modus.KONJUNKTIV;
     } else {
       found = false;
@@ -206,26 +208,26 @@ language.Form.prototype.set = function(s) {
     this.genus = language.Genus.MASCULINUM;
     break;
   case 'n':
-    if (goog.string.startsWith(s, 'no')) {
+    if (string.startsWith(s, 'no')) {
       this.kasus = language.Kasus.NOMINATIV;
     } else {
       this.genus = language.Genus.NEUTRUM;
     }
     break;
   case 'p':
-    if (goog.string.startsWith(s, 'pas')) {
+    if (string.startsWith(s, 'pas')) {
       this.genusVerbi = language.GenusVerbi.PASSIV;
-    } else if (goog.string.startsWith(s, 'part')) {
+    } else if (string.startsWith(s, 'part')) {
       this.modus = language.Modus.PARTIZIP;
-    } else if (goog.string.startsWith(s, 'perf')) {
+    } else if (string.startsWith(s, 'perf')) {
       this.tempus = language.Tempus.PERFEKT;
-    } else if (goog.string.startsWith(s, 'plus')) {
+    } else if (string.startsWith(s, 'plus')) {
       this.tempus = language.Tempus.PLUSQUAMPERFEKT;
-    } else if (goog.string.startsWith(s, 'pl')) {
+    } else if (string.startsWith(s, 'pl')) {
       this.numerus = language.Numerus.PLURAL;
-    } else if (goog.string.startsWith(s, 'praes')) {
+    } else if (string.startsWith(s, 'praes')) {
       this.tempus = language.Tempus.PRAESENS;
-    } else if (goog.string.startsWith(s, 'praet')) {
+    } else if (string.startsWith(s, 'praet')) {
       this.tempus = language.Tempus.IMPERFEKT;
     } else {
       found = false;
@@ -235,7 +237,7 @@ language.Form.prototype.set = function(s) {
     this.numerus = language.Numerus.SINGULAR;
     break;
   case 'v':
-    if (goog.string.startsWith(s, 'vok')) {
+    if (string.startsWith(s, 'vok')) {
       this.kasus = language.Kasus.VOKATIV;
     } else {
       found = false;
