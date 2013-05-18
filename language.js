@@ -313,9 +313,15 @@ language.Word = function(definition) {
  * @param {string} s
  */
 language.Word.prototype.setForm = function(form, s) {
+  if (s.indexOf('#') != -1) {
+    return;
+  }
   var key = form.toString();
   form = new language.Form(key);
   var wortForm = new language.WordForm(this, form, s);
+  
+  console.log(key + " " + s)
+  
   this.forms[key] = wortForm;
 };
 
@@ -371,7 +377,6 @@ language.Dictionary.prototype.load = function(text) {
         window.console.log('Error parsing "' + parts[i] + '":' + e);
     }
   }
-  console.log(this.words);
 };
 
 

@@ -1,102 +1,102 @@
-s: acus, f: Nadel
-s: aequor, -oris, n: Meeresfl�che
-s: aes, aeris, n: Erz
-s: agger, -eris, m: Damm
-s: amicus, -i, m: Freund
-s: amnis, m: Strom
-s: ars, artis, f: Kunst
-s: arx, arcis, f: Burg
-s: cadaver, cadaveris, n: Leichnahm
-s: calix, calicis, m: Becher
-s: caput, capitis, n: Kopf
-s: casus, m: Fall
-s: civitas, -atis, f: Stadt
-s: collis, m: H�gel
-s: cornu, -us, n: Horn
-s: crux, crucis, f: Kreuz
-s: dens, dentis, m: Zahn
-s: dies, -ei, m: Tag
-s: dies, diei, f: Termin, Frist
-s: dolor, -oris, m: Schmerz
-s: domus, -us, 5s=-o, 4p=-os, 2p=domuum+domorum, f: Haus
-s: exercitus, -us, m: Heer
-s: faber, -bri, m: Handwerker
-s: factum, -i, n: Tat, Handlung, Tatsache, Erfolg, Werk, Verfahren, Vorfall, Ereignis
-s: filia, -ae, f: Tochter
-s: filius, -i, 6s=fili, m: Sohn
-s: finis, m: Ende
-s: fons, fontis, m: Quelle
-s: fraus, fraudis, f: Betrug
-s: genus, -eris, n: Geschlecht
-s: grex, gregis, m: Herde
-s: heres, -edis, m: Erbe
-s: humus, -i, f: Erdboden
-s: ignis, m: Feuer
-s: iter, itineris, n: Reise, Marsch, Weg
-s: iudex, iudicis, m: Richter
-s: ius, iuris, n: Recht
-s: lac, lactis, n: Milch
-s: lapis, lapidis, m: Stein
-s: laus, laudis, f: Lob
-s: leo, -onis, m: L�we
-s: lex, legis, f: Gesetz
-s: manus, f: Hand, Schar
-s: mare, -is, n: Meer
-s: mel, mellis, n: Honig
-s: mensis, m: Monat
-s: meridies, meridiei, m: Mittag
-s: miles, -itis, m: Soldat
-s: mons, montis, m: Berg
-s: mos, moris, m: Sitte
-s: navis, f: Schiff
-s: nepos, -otis, m: Enkel
-s: nomen, -inis, n: Name
-s: nox, noctis, f: Nacht
-s: nubes, -is, f: Wolke
-s: orbis, m: Kreis
-s: ordo, -inis, m: Ordnung
-s: os, oris, n: Mund
-s: os, ossis, n: Knochen
-s: panis, m: Brot
-s: pater, patris, m: Vater
-s: pes, pedis, m: Fu�
-s: piscis, m: Fisch
-s: pons, pontis, m: Br�cke
-s: porticus, f: S�ulenhalle
-s: puer, -eri, m: Knabe
-s: pulvis, -eris, m: Staub
-s: regio, -onis, f: Gegend
-s: res, rei, f: Sache
-s: sal, salis, m: Salz
-s: sanguis, -inis, m: Blut
-s: sermo, -onis, m: Gespr�ch
-s: sol, solis, m: Sonne
-s: tempus, -oris, n: Zeit
-s: tribus, f: Bezirk
-s: turris, -is, f: Turm
-s: urbs, urbis, f: Stadt
-s: ver, veris, n: Fr�hling
-s: virgo, -inis, f: Jungfrau
-s: virtus, -utis, f: Tugend
-s: vulgus, -i, n: Volk
-v: porto, 1: tragen
-v: deleo, 2: zerst�ren
-v: tego, texi, tectum, 3: bedecken
-v: capio, cepi, captum, 3: fangen
-v: audio, 4: h�ren
-v: sum, fui: sein
-v: ferro, tuli, latum: tragen
-v: volo, volui: wollen
-v: nolo, nolui: nicht wollen
-v: malo, malui: lieber wollen
-v: eo, ii, itum: gehen
-v: loquor, locutus sum, 3: sprechen, sagen
-v: absum, afui: abwesend sein
-v: adsum, adfui: anwesend sein
-v: desum, defui: fehlen
-v: intersum, interfui: teilnehmen
-v: obsum, obfui: schaden
-v: praesum, praefui: vorstehen
-v: prosum, profui: n�tzen
-v: supersum, superfui: �brig sein
-v: possum, potui: ?
+acus, f: Nadel
+aequor, -oris, n: Meeresflaeche
+aes, aeris, n: Erz
+agger, -eris, m: Damm
+amicus, -i, m: Freund
+amnis, m: Strom
+ars, artis, f: Kunst
+arx, arcis, f: Burg
+cadaver, cadaveris, n: Leichnahm
+calix, calicis, m: Becher
+caput, capitis, n: Kopf
+casus, m: Fall
+civitas, -atis, f: Stadt
+collis, m: Huegel
+cornu, -us, n: Horn
+crux, crucis, f: Kreuz
+dens, dentis, m: Zahn
+dies, -ei, m: Tag
+dies, diei, f: Termin, Frist
+dolor, -oris, m: Schmerz
+domus, -us, 5s=-o, 4p=-os, 2p=domuum+domorum, f: Haus
+exercitus, -us, m: Heer
+faber, -bri, m: Handwerker
+factum, -i, n: Tat, Handlung, Tatsache, Erfolg, Werk, Verfahren, Vorfall, Ereignis
+filia, -ae, f: Tochter
+filius, -i, 6s=fili, m: Sohn
+finis, m: Ende
+fons, fontis, m: Quelle
+fraus, fraudis, f: Betrug
+genus, -eris, n: Geschlecht
+grex, gregis, m: Herde
+heres, -edis, m: Erbe
+humus, -i, f: Erdboden
+ignis, m: Feuer
+iter, itineris, n: Reise, Marsch, Weg
+iudex, iudicis, m: Richter
+ius, iuris, n: Recht
+lac, lactis, n: Milch
+lapis, lapidis, m: Stein
+laus, laudis, f: Lob
+leo, -onis, m: Loewe
+lex, legis, f: Gesetz
+manus, f: Hand, Schar
+mare, -is, n: Meer
+mel, mellis, n: Honig
+mensis, m: Monat
+meridies, meridiei, m: Mittag
+miles, -itis, m: Soldat
+mons, montis, m: Berg
+mos, moris, m: Sitte
+navis, f: Schiff
+nepos, -otis, m: Enkel
+nomen, -inis, n: Name
+nox, noctis, f: Nacht
+nubes, -is, f: Wolke
+orbis, m: Kreis
+ordo, -inis, m: Ordnung
+os, oris, n: Mund
+os, ossis, n: Knochen
+panis, m: Brot
+pater, patris, m: Vater
+pes, pedis, m: Fuss
+piscis, m: Fisch
+pons, pontis, m: Bruecke
+porticus, f: Saeulenhalle
+puer, -eri, m: Knabe
+pulvis, -eris, m: Staub
+regio, -onis, f: Gegend
+res, rei, f: Sache
+sal, salis, m: Salz
+sanguis, -inis, m: Blut
+sermo, -onis, m: Gespraech
+sol, solis, m: Sonne
+tempus, -oris, n: Zeit
+tribus, f: Bezirk
+turris, -is, f: Turm
+urbs, urbis, f: Stadt
+ver, veris, n: Fruehling
+virgo, -inis, f: Jungfrau
+virtus, -utis, f: Tugend
+vulgus, -i, n: Volk
+porto, 1: tragen
+deleo, 2: zerstoeren
+tego, texi, tectum, 3: bedecken
+capio, cepi, captum, 3: fangen
+audio, 4: hoeren
+sum, fui: sein
+ferro, tuli, latum: tragen
+volo, volui: wollen
+nolo, nolui: nicht wollen
+malo, malui: lieber wollen
+eo, ii, itum: gehen
+loquor, locutus sum, 3: sprechen, sagen
+absum, afui: abwesend sein
+adsum, adfui: anwesend sein
+desum, defui: fehlen
+intersum, interfui: teilnehmen
+obsum, obfui: schaden
+praesum, praefui: vorstehen
+prosum, profui: nuetzen
+supersum, superfui: uebrig sein
+possum, potui: koennen, vermoegen, im Stande sein
