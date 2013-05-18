@@ -356,15 +356,19 @@ language.Dictionary = function(language) {
 language.Dictionary.prototype.load = function(text) {
   var parts = text.split('\n');
   for (var i = 0; i < parts.length; i++) {
-    var word = this.language.parse(parts[i]);
-    for (var k in word.forms) {
-      var wordForm = word.forms[k];
-      var formen = this.words[wordForm.string];
-      if (!formen) {
-        formen = [];
-        this.words[wordForm.string] = formen;
+    try {
+      var word = this.language.parse(parts[i]);
+      for (var k in word.forms) {
+        var wordForm = word.forms[k];
+        var formen = this.words[wordForm.string];
+        if (!formen) {
+          formen = [];
+          this.words[wordForm.string] = formen;
+        }
+        formen.push(wordForm);
       }
-      formen.push(wordForm);
+    } catch(e) {
+        window.console.log('Error parsing "' + parts[i] + '":' + e);
     }
   }
   console.log(this.words);

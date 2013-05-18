@@ -5,16 +5,16 @@
 Lateinisches Substantiv: 
 <input id="input" value="" name="input"> <button onclick="document.getElementById('output').innerHTML = bestimme(document.getElementById('input').value);">Bestimme</button>
 <div id="output"></div>
-<script type="text/javascript" src="require.js"></script>
+<script type="text/javascript" src="utils.js"></script>
 
 <script>
 var bestimme = function() {return "still loading..."};
 
-preload(['closet', 'grammar', 'language', 'dictionary', 'latein'], function() {
+preload(['language', 'latein'], function() {
+  var language = require("language");
   var latein = require("latein");
-  var dictionary = require("dictionary");
 
-  var dict = new dictionary.Dictionary(new latein.Latein());
+  var dict = new language.Dictionary(new latein.Latein());
 
   var req = new XMLHttpRequest();
   req.onload = function() {

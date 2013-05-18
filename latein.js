@@ -55,10 +55,13 @@ latein.Latein = function() {
 latein.Latein.prototype.parse = function(def) {
   var parts = def.split(':');
   var cut = def.indexOf(':');
-  var word = new language.Word(def.substring(cut + 1));
+  var word = new language.Word(def.substr(cut + 1));
   switch(parts[0].trim().toUpperCase()) {
   case 'S': 
     this.initSubstantiv(word, parts[1]);
+    break;
+  case 'V':
+    this.initVerb(word, parts[1]);
     break;
   default:
     window.console.log("NYI: Wortart " + parts[0]);
@@ -70,7 +73,7 @@ latein.Latein.prototype.parse = function(def) {
 /**
  * Bildet alle Formen eines Substantivs.
  * 
- * @param {language.Word} wors
+ * @param {language.Word} word
  * @param {string} lat
  */
 latein.Latein.prototype.initSubstantiv = function(word, lat) {
@@ -96,24 +99,24 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
         i--;
       }
       if (i === 0) throw ('Kann nominativendung nicht abtrennen in "' + nominativ + '"');
-      bastelStamm = nominativ.substring(0, i);
+      bastelStamm = nominativ.substr(0, i);
     } else if (latein.VOKALE.indexOf(nominativ.charAt(nominativ.length - 1)) != -1) {
-      bastelStamm = nominativ.substring(0, nominativ.length - 1);
+      bastelStamm = nominativ.substr(0, nominativ.length - 1);
     } else {
-      bastelStamm = nominativ.substring(0, nominativ.length - 2);
+      bastelStamm = nominativ.substr(0, nominativ.length - 2);
     }
     
-    genitiv = bastelStamm + genitiv.substring(1);
+    genitiv = bastelStamm + genitiv.substr(1);
   } 
  
-  var stamm = genitiv.substring(0, genitiv.length - 
+  var stamm = genitiv.substr(0, genitiv.length - 
       (string.endsWith(genitiv, 'i') && !string.endsWith(genitiv, 'ei') ? 1 : 2));
     
   if (bastelStamm === '') {
     bastelStamm = stamm;
   }
 
-  var genitivEndung = genitiv.substring(stamm.length);
+  var genitivEndung = genitiv.substr(stamm.length);
   
   var endungen = null;
   if (genitivEndung == 'is') {  // Konsonantische
@@ -205,56 +208,98 @@ latein.Latein.prototype.initSubstantiv = function(word, lat) {
 };
 
 
+/**
+ * Bildet alle Formen eines Verbs.
+ * 
+ * @param {language.Word} word
+ * @param {string} lat
+ */
+latein.Latein.prototype.initVerb = function(word, lat) {
+  word.wortArt = language.WortArt.VERB;
+  var genus = null;
+  var parts = lat.split(',');
+  var cnt = parts.length;
+
+  var s = string.trim(parts[cnt - 1]);
+  var stamm1 = string.trim(parts[0]);
+  var stamm2;
+  var stamm3;
+  var klasse;
+
+  if (s != '1' && s != '2' && s != '3' && s != '4') {
+    if (stamm1 == 'possum') {
+      stamm1 = '';
+      klasse = 7;
+    } else if (string.startsWith(stamm1, 'sum')) {
+      klasse = 6;
+      stamm1 = stamm1.substr(0, stamm1.length - 3);
+    } else {
+      switch(stamm1) {
+        case 'ferro': klasse = 8; break;
+        case 'volo': klasse = 9; break;
+        case 'nolo': klasse = 10; break;
+        case 'malo': klasse = 11; break;
+        case 'eo': klasse = 12; break;
+        case 'fio:': throw 'klasse = 13';
+        default: throw 'Syntaxfehler im lexikon.';
+      }
+    }
+  } else {
+    klasse = parseInt(s, 10);
+
+    if (string.endsWith(stamm1, 'r')) {
+      stamm1 = stamm1.substring(0, stamm1.length - 1);
+    }
+    
+    if (klasse == 3 && string.endsWith(stamm1, 'io')) {
+      klasse = 5;
+    }
+    stamm1 = stamm1.substring(0, stamm1.length - (klasse == 2 || klasse == 5 ? 2 : 1));
+  }
+  
+  if (cnt == 2 && klasse <= 5) {
+    switch (klasse) {
+      case 1: 
+        stamm2 = stamm1 + 'av';
+        stamm3 = stamm1 + 'at';
+        break;
+      case 2:
+        stamm2 = stamm1 + 'ev';
+        stamm3 = stamm1 + 'et';
+        break;
+      case 4: 
+        stamm2 = stamm1 + 'v';
+        stamm3 = stamm1 + 't';
+        break;
+      case 3:
+      case 5: 
+        stamm2 = stamm1 + 'iv';
+        stamm3 = stamm1 + 'it';
+        break;
+    }
+  } else {
+    stamm2 = string.trim(parts[1]);
+    if (string.endsWith(stamm2, ' sum')) {
+      stamm3 = stamm2.substring(0, stamm2.length - 6);
+      stamm2 = '#';
+    } else {
+      stamm3 = string.trim(parts[2]);
+      stamm2 = stamm2.substr(0, stamm2.length - 1);
+
+      if (stamm3 != '') {
+        stamm3 = stamm3.substr(0, stamm3.length - 2)
+      } else {
+        stamm3 = '#'
+      }
+    }
+  }
+  
+  
+  
+};
+
+
 /*
-uses
-  crt, xsystem, xString, collects, xfile, xdos, env,
-  allgem;
-
-
-Type
-  tStatistik = Record
-    count: Integer;
-    ok: real;
-  end;
-
-
-  tLatein = Object (tWort)
-    Procedure Dekliniere (Dekl: Char; form: tForm; const nom, stamm: String; gen: tGenus);
-    Procedure InitVerb (lat: String); Virtual;
-    Procedure InitSubstantiv (lat: String); Virtual;
-  end;
-
-
-const
-  Stat: tStatistik = (count: 0; ok: 0);
-
-
-var
-  lexikon: tStringCollection;
-  Ident: tLongEnvironment;
-
-
-function Stat2Str (Stat: tStatistik): String;
-  begin
-    if stat.count = 0 then
-      stat2Str := 'Keine Abfragen'
-    else
-      Stat2str := 'Abfragen: '+int2str (stat.count,0)+ ' davon richtig: '+real2str (stat.ok,9,2)+ ' = '+
-               real2str ((100*stat.ok) / stat.count,9,2)+ ' %';
-  end;
-
-
-Function Silben (const S: String): Integer;
-  var
-    cnt, i: Integer;
-  begin
-    cnt := 0;
-    for i := 1 to length (s) do
-      if s[i] in vokale then
-        inc (cnt);
-
-    silben := cnt;
-  end;
 
 
 Procedure tlatein.InitVerb (lat: String);
