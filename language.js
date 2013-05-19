@@ -313,14 +313,12 @@ language.Word = function(definition) {
  * @param {string} s
  */
 language.Word.prototype.setForm = function(form, s) {
-  if (s.indexOf('#') != -1) {
+  if (s == null || s.indexOf('#') != -1) {
     return;
   }
   var key = form.toString();
   form = new language.Form(key);
   var wortForm = new language.WordForm(this, form, s);
-  
-  console.log(key + " " + s)
   
   this.forms[key] = wortForm;
 };
@@ -366,12 +364,17 @@ language.Dictionary.prototype.load = function(text) {
       var word = this.language.parse(parts[i]);
       for (var k in word.forms) {
         var wordForm = word.forms[k];
-        var formen = this.words[wordForm.string];
-        if (!formen) {
-          formen = [];
-          this.words[wordForm.string] = formen;
+        var alternatives = wordForm.string.split('+');
+        console.log("alternatives: " + alternatives);
+        for (var j = 0; j < alternatives.length; j++) {
+          var s = alternatives[j];
+          var formen = this.words[s];
+          if (!formen) {
+            formen = [];
+            this.words[s] = formen;
+          }
+          formen.push(wordForm);
         }
-        formen.push(wordForm);
       }
     } catch(e) {
         window.console.log('Error parsing "' + parts[i] + '":' + e);

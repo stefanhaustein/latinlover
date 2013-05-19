@@ -1,15 +1,43 @@
 <html>
-<head>
-</head>
+<head><title>Latin Lover</title></head>
 <body>
-Lateinisches Substantiv: 
-<input id="input" value="" name="input"> <button onclick="document.getElementById('output').innerHTML = bestimme(document.getElementById('input').value);">Bestimme</button>
-<div id="output"></div>
-<script type="text/javascript" src="utils.js"></script>
+  <h3>Latin word form analizer</h3>
+  <table border=0 cellspacing=0 cellpadding=0>
+    <tr>
+      <td valign="top">
+        <form onsubmit="analyze(); return false;">
+          Latin word:<br> 
+          <input id="input" value="" name="input"> 
+          <input type="submit" value="Analyze">
+        </form>
+      </td>
+      <td width="50px"></td>
+      <td valign="top">
+        <a href="lexikon.txt" target="_blank">list of supported words</a><br>
+        <a href="https://github.com/stefanhaustein/latinlover" target="_blank">source code</a><br>
+      </td>
+    </tr>
+  </table>
+
+  <div id="output"></div>
+  <script type="text/javascript" src="utils.js"></script>
 
 <script>
-var bestimme = function() {return "still loading..."};
+function emit(list) {
+  var output = document.getElementById('output');
+  output.innerHTML = '';
+  for (var i = 0; i < list.length; i++) {
+    var item = document.createElement('div');
+    item.appendChild(document.createTextNode(list[i]));
+    output.appendChild(item);
+  }
+}
 
+function analyze() {
+  emit(["still loading..."]);
+}
+
+// preload makes require work in the loaded files...
 preload(['language', 'latein'], function() {
   var language = require("language");
   var latein = require("latein");
@@ -20,21 +48,23 @@ preload(['language', 'latein'], function() {
   req.onload = function() {
     dict.load(this.responseText);   
   };
-  req.open("get", "lexikon.txt");
+  req.open('get', 'lexikon.txt');
   req.send();
 
-  bestimme = function(s) {
+  analyze = function() {
+    var s = document.getElementById('input').value;
+      
     var options = dict.find(s);
-    var result = '';
+    var list = [];
     if (options) {
       for (var i = 0; i < options.length; i++) {
         var wordForm = options[i];
-        result += wordForm.form.toString() + " von " + wordForm.word.definition + '<br>';
+        list.push(wordForm.form.toString() + " of " + wordForm.word.definition);
       }
-      return result;
     } else {
-      return 'Unbekannt: "' + s + '"';
+      list.push('Unknown: "' + s + '"');
     }
+    emit(list);
   };
 });
 </script>
